@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado productos</title>
+        <link rel='stylesheet' href='https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/dark.css'>
+</head>
+<body>
+    <header>
+
+    </header>
+    
+    <main>
+        <h1>Listado productos</h1>
+        <section id="contenedor-productos"></section>
+    </main>
+
+
+    <script>
+        let contenedorProductos = document.getElementById("contenedor-productos");
+
+        async function mostrarProductos() {
+            try {
+                let url = "http://localhost:3000/api/products/";
+                let response = await fetch(url);
+                let products = await response.json();
+
+                console.table(products.payload);
+
+            } catch (error) {
+                console.error(error);
+            }
+        }
+
+        mostrarProductos();
+    </script>
+</body>
+</html>
