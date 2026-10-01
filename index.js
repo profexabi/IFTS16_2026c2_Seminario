@@ -14,7 +14,7 @@ const PORT = environments.port;
 
 //////////////////
 // Middlewares
-app.use(cors());
+// app.use(cors());
 
 
 //////////////////

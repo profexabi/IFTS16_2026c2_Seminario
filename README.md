@@ -1,5 +1,9 @@
 # IFTS16_2026c2_Seminario
 
+## Recursos recomendados
+- [Playlist de TodoCode Programacion Web](https://www.youtube.com/watch?v=lC6JOQLIgp0&list=PLQxX2eiEaqbxx6Ds5bd1F6LZJo7_OnZhV)
+- [Clase de 2h de protocolo HTTP y lenguaje HTML](https://www.youtube.com/watch?v=l6oF_RpBf64)
+
 ### TO DO
 - Incorporar middlewares
 - Crear los endpoints basicos sin optimizar

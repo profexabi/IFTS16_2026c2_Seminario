@@ -1,0 +1,25 @@
+#contenedor-productos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.card-producto {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid;
+    border-radius: 5px;
+    width: 225px;
+    height: 225px;
+    margin-bottom: 25px;
+    justify-content: space-around;
+}
+
+.card-producto p, .card-producto h3 {
+    margin: 0;
+}
+
+.card-producto img {
+    width: 50%;
+}

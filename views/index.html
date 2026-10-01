@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Listado productos</title>
-        <link rel='stylesheet' href='https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/dark.css'>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/dark.css'>
+
+    <!-- CSS externo -->
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <header>
@@ -20,20 +23,39 @@
     <script>
         let contenedorProductos = document.getElementById("contenedor-productos");
 
-        async function mostrarProductos() {
+        async function obtenerProductos() {
             try {
                 let url = "http://localhost:3000/api/products/";
                 let response = await fetch(url);
                 let products = await response.json();
 
+                // Ahora que recibo toda la informacion y la puedo visualizar en la consola, la voy a mostrar en la pagina renderizando el HTML
                 console.table(products.payload);
+                renderizarProductos(products.payload);
 
             } catch (error) {
                 console.error(error);
             }
         }
 
-        mostrarProductos();
+
+        function renderizarProductos(array) {
+            let htmlProducto = "";
+
+            array.forEach(producto => {
+                htmlProducto += `
+                <div class="card-producto">
+                    <img src="${producto.image}" alt="${producto.name}">
+                    <h3>${producto.name}</h3>
+                    <p>Id: ${producto.id}</p>
+                    <p>$${producto.precio}</p>
+                </div>`;
+            });
+
+            contenedorProductos.innerHTML = htmlProducto;
+        }
+
+        obtenerProductos();
     </script>
 </body>
 </html>
