@@ -1,6 +1,6 @@
+# Apuntes
 
-
-# Que es CORS?
+## Que es CORS?
 Cuando desde el front hacemos un fetch a nuestra API Rest, nos encontramos con un fallo en la consola!
 
 ```txt
@@ -31,4 +31,15 @@ Access-Control-Allow-Headers: Content-Type, Authorization
     Spring Boot: Usa @CrossOrigin en el controlador o configura globalmente.
     API Gateway (AWS, Oracle, Google): Activa CORS directamente en la consola o mediante políticas de solicitud.
 
-Sin esta configuración, el navegador bloqueará cualquier solicitud entre orígenes, incluso si tu API está funcionando correctamente.
+**Sin esta configuración, el navegador bloqueará cualquier solicitud entre orígenes, incluso si tu API está funcionando correctamente.**
+
+
+---
+
+
+## Que son los `middlewares`?
+Como vimos CORS en nuestra aplicacion es un middleware que en cada respuesta que da el servidor, da explicitamente permiso para consumir los recursos que provee y expone la API REST.
+
+Los middlewares son funciones que se ejecutan durante el ciclo de solicitud y respuesta de una aplicacion. Son funciones que tienen acceso al objeto de peticiones `req` y al objeto de respuestas `res` y a la siguiente funcion de middleware en el ciclo, `next`.
+
+Los middlewares puede realizar tareas como ejecutar codigo, modificar las solicitudes y respuestas, finalizarlas o invocar al siguiente middleware

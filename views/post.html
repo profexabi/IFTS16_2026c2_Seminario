@@ -36,47 +36,43 @@
     </header>
     
     <main>
-        <h1>Listado productos</h1>
+        <h1>Consultar producto por id</h1>
+
+        <!-- Formulario para obtener producto por id -->
+        <form id="altaProducts-form">
+
+            <label for="categoryProd">Categoria</label>
+            <select name="category" id="categoryProd" required>
+                <option value="food">food</option>
+                <option value="drink">drink</option>
+            </select>
+
+
+            <label for="imageProd">Imagen</label>
+            <input type="text" name="image" id="imageProd" required>
+
+
+            <label for="nameProd">Nombre</label>
+            <input type="text" name="name" id="nameProd" required>
+
+
+            <label for="priceProd">Precio</label>
+            <input type="number" name="price" id="priceProd" required>
+
+
+            <input type="submit" value="Crear producto">
+        </form>
+
+
         <section id="contenedor-productos"></section>
     </main>
 
 
     <script>
+        let altaProductsForm = document.getElementById("altaProducts-form");
         let contenedorProductos = document.getElementById("contenedor-productos");
 
-        async function obtenerProductos() {
-            try {
-                let url = "http://localhost:3000/api/products/";
-                let response = await fetch(url);
-                let products = await response.json();
-
-                // Ahora que recibo toda la informacion y la puedo visualizar en la consola, la voy a mostrar en la pagina renderizando el HTML
-                console.table(products.payload);
-                renderizarProductos(products.payload); // Le mando a renderizarProdutos un array de objetos que tengo que loopear
-
-            } catch (error) {
-                console.error(error);
-            }
-        }
-
-
-        function renderizarProductos(array) {
-            let htmlProducto = "";
-
-            array.forEach(producto => {
-                htmlProducto += `
-                <div class="card-producto">
-                    <img src="${producto.image}" alt="${producto.name}">
-                    <h3>${producto.name}</h3>
-                    <p>Id: ${producto.id}</p>
-                    <p>$${producto.price}</p>
-                </div>`;
-            });
-
-            contenedorProductos.innerHTML = htmlProducto;
-        }
-
-        obtenerProductos();
+        
     </script>
 </body>
 </html>

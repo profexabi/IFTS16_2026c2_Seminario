@@ -1,3 +1,39 @@
+/* ================
+    Header
+================ */
+header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 3%;
+}
+
+header nav {
+    width: 87%;
+}
+
+.logo {
+    border-radius: 5px;
+}
+
+#logo-container {
+    width: 8%;
+}
+
+
+header ul {
+    padding-left: 0;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    list-style: none;
+    font-size: 20px;
+}
+
+
+
+/* ===========
+    Main
+============ */
 #contenedor-productos {
     display: flex;
     flex-wrap: wrap;
@@ -22,4 +58,26 @@
 
 .card-producto img {
     width: 50%;
+}
+
+
+#contenedor-productos ul {
+    width: 80%;
+    padding-left: 0;
+}
+
+
+.lista-producto {
+    display: flex;
+    list-style: none;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 18px;
+    margin-top: 5%;
+}
+
+
+.lista-producto img {
+    width: 70px;
+    border-radius: 5px;
 }
