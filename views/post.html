@@ -72,7 +72,39 @@
         let altaProductsForm = document.getElementById("altaProducts-form");
         let contenedorProductos = document.getElementById("contenedor-productos");
 
-        
+        altaProductsForm.addEventListener("submit", async event => {
+            event.preventDefault(); // Evitamos el envio por defecto del form
+
+            const formData = new FormData(event.target);
+            console.log(formData); // FormData(4) { category → "food", image → "coso", name → "coso", price → "123" }
+
+            const data = Object.fromEntries(formData.entries());
+            console.table(data);
+
+            const urlBase = "http://localhost:3000";
+
+            try {
+                const response = await fetch(`${urlBase}/api/products`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                // Chequeamos si recibimos una respuesta positiva del servidor
+                if (response.ok) {
+                    console.log(response);
+
+                    const result = await response.json();
+                    console.log(result.message);
+                    alert(result.message);
+                }
+
+            } catch (error) {
+                console.error("Error al enviar los datos", error);
+            }
+        })
     </script>
 </body>
 </html>

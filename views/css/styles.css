@@ -1,4 +1,12 @@
 /* ================
+    General
+================ */
+ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+/* ================
     Header
 ================ */
 header {
@@ -21,11 +29,9 @@ header nav {
 
 
 header ul {
-    padding-left: 0;
     display: flex;
     width: 100%;
     justify-content: space-between;
-    list-style: none;
     font-size: 20px;
 }
 
@@ -64,6 +70,14 @@ header ul {
 #contenedor-productos ul {
     width: 80%;
     padding-left: 0;
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.lista-btn {
+    align-self: end;
 }
 
 
@@ -73,7 +87,6 @@ header ul {
     align-items: center;
     justify-content: space-between;
     font-size: 18px;
-    margin-top: 5%;
 }
 
 

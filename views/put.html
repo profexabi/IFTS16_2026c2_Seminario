@@ -48,12 +48,16 @@
 
 
         <section id="contenedor-productos"></section>
+
+        <section id="contenedor-formulario"></section>
     </main>
+
 
 
     <script>
         let getProductform = document.getElementById("getProduct-form");
         let contenedorProductos = document.getElementById("contenedor-productos");
+        let contenedorFormulario = document.getElementById("contenedor-formulario");
 
         // Manejamos el evento de envio del formulario
         getProductform.addEventListener("submit", async event => {
@@ -96,10 +100,100 @@
                     <img src="${producto.image}" alt="${producto.name}" class="logo">
                     <p>Id: ${producto.id} / Nombre: ${producto.name} / <strong>$${producto.price}</strong></p>
                 </li>
+                <li class="lista-btn">
+                    <input type="button" id="updateProduct-button" value="Actualizar producto">
+                </li>
             </ul>`;
             
 
             contenedorProductos.innerHTML = htmlProducto;
+
+            const updateProductButton = document.getElementById("updateProduct-button");
+            updateProductButton.addEventListener("click", event => {
+                generarFormularioProducto(event, producto);
+            });
+
+
+            function generarFormularioProducto(event, producto) {
+                event.stopPropagation();
+
+                console.table(producto);
+
+                let updateProductForm = `
+                <h2>Actualizar producto</h2>
+                <form id="updateProducts-form">
+
+                    <label for="idProd">Id</label>
+                    <input type="number" name="id" id="idProd" value="${producto.id}" readonly>
+
+                    <label for="categoryProd">Categoria</label>
+                    <select name="category" id="categoryProd" required>
+                        <option value="food">food</option>
+                        <option value="drink">drink</option>
+                    </select>
+
+
+                    <label for="imageProd">Imagen</label>
+                    <input type="text" name="image" id="imageProd" value="${producto.image}" required>
+
+
+                    <label for="nameProd">Nombre</label>
+                    <input type="text" name="name" id="nameProd" value="${producto.name}" required>
+
+
+                    <label for="priceProd">Precio</label>
+                    <input type="number" name="price" id="priceProd" value="${producto.price}" required>
+
+
+                    <input type="submit" value="Actualizar producto">
+                </form>
+                `;
+
+                contenedorFormulario.innerHTML = updateProductForm;
+
+                const updateProductsForm = document.getElementById("updateProducts-form");
+                updateProductsForm.addEventListener("submit", event => {
+                    actualizarProducto(event);
+                });
+            }
+
+            async function actualizarProducto(event) {
+                event.preventDefault();
+
+                const urlBase = "http://localhost:3000";
+                const formData = new FormData(event.target);
+                const data = Object.fromEntries(formData.entries());
+                console.table(data);
+
+                try {
+                    const response = await fetch(`${urlBase}/api/products`, {
+                        method: "PUT",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(data)
+                    });
+
+                    const result = await response.json();
+                    
+                    if(response.ok) {
+                        console.log(response);
+
+                        console.log(result.message);
+                        alert(result.message);
+
+                        // Limpiamos visualmente la pantalla
+                        contenedorProductos.innerHTML = "";
+                        contenedorFormulario.innerHTML = "";
+
+                    } else {
+                        console.error("Error al actualizar producto: ", result.message);
+                    }
+
+                } catch (error) {
+                    console.error("Error al enviar los datos: ", error);
+                }
+            }
         }
     </script>
 </body>

@@ -1,22 +1,6 @@
 # IFTS16_2026c2_Seminario
 
-## Recursos recomendados
-- [La IA no esta terminando con los trabajos dev](https://www.youtube.com/watch?v=KQgATAU6ztU)
-- [La gran deuda tecnica que va a dejar la IA](https://www.youtube.com/watch?v=RckI7mBhZvY)
-- [Playlist de TodoCode Programacion Web](https://www.youtube.com/watch?v=lC6JOQLIgp0&list=PLQxX2eiEaqbxx6Ds5bd1F6LZJo7_OnZhV)
-- [Clase de 2h de protocolo HTTP y lenguaje HTML](https://www.youtube.com/watch?v=l6oF_RpBf64)
-
-### DONE
-- GET by id
-- Vistas GET, GET by id
-
-### TO DO
-- Incorporar middlewares
-- Crear los endpoints basicos sin optimizar
-    - POST
-    - PUT
-    - DELETE
-
+## Prox clase, **OPTIMIZAR ENDPOINTS**
 - Optimizar endpoints
 - Optimizar vistas
 
@@ -36,6 +20,17 @@
 - Garantizar el backoffice y la API REST
 - Vistas en EJS
 - Opcional Front cliente
+
+
+## Recursos recomendados
+- [La IA no esta terminando con los trabajos dev](https://www.youtube.com/watch?v=KQgATAU6ztU)
+- [La gran deuda tecnica que va a dejar la IA](https://www.youtube.com/watch?v=RckI7mBhZvY)
+- [Playlist de TodoCode Programacion Web](https://www.youtube.com/watch?v=lC6JOQLIgp0&list=PLQxX2eiEaqbxx6Ds5bd1F6LZJo7_OnZhV)
+- [Clase de 2h de protocolo HTTP y lenguaje HTML](https://www.youtube.com/watch?v=l6oF_RpBf64)
+
+
+
+---
 
 ## Guia TP Seminario
 

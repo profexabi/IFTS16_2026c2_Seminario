@@ -66,6 +66,53 @@ app.get("/api/products/:id", async (req, res) => {
 });
 
 
+// POST product
+app.post("/api/products", async (req, res) => {
+    try {
+
+        // console.log(req.body);
+        const { category, image, name, price } = req.body
+
+        const sql = "INSERT INTO products (name, image, category, price) VALUES (?, ?, ?, ?)";
+
+        await connection.query(sql, [name, image, category, price]);
+
+        return res.status(201).json({
+            message: "Producto creado con exito"
+        });
+
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+
+// PUT product
+app.put("/api/products", async (req, res) => {
+    const { id, name, image, price, category } = req.body;
+
+    const sql = "UPDATE products SET name = ?, image = ?, price = ?, category = ? WHERE id = ?";
+
+    await connection.query(sql, [name, image, price, category, id]);
+
+    return res.status(200).json({
+        message: "Producto actualizado correctamente"
+    });
+});
+
+
+// DELETE product
+app.delete("/api/products/:id", async (req, res) => {
+    const { id } = req.params;
+    const sql = "DELETE FROM products WHERE id = ?";
+    await connection.query(sql, [id]);
+
+    res.status(200).json({
+        message: `Producto con id ${id} eliminado correctamente`
+    });
+});
+
+
 
 app.listen(PORT, () => {
     console.log(`Servidor corriendo en el puerto ${PORT}`);

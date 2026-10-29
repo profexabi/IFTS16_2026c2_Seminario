@@ -96,11 +96,58 @@
                     <img src="${producto.image}" alt="${producto.name}" class="logo">
                     <p>Id: ${producto.id} / Nombre: ${producto.name} / <strong>$${producto.price}</strong></p>
                 </li>
+                <li class="lista-btn">
+                    <input type="button" id="deleteProduct-button" value="Eliminar producto">
+                </li>
             </ul>`;
             
 
             contenedorProductos.innerHTML = htmlProducto;
+
+            const deleteProductButton = document.getElementById("deleteProduct-button");
+
+            deleteProductButton.addEventListener("click", event => {
+                event.stopPropagation();
+
+                const confirmacion = confirm("Queres elminar este producto?");
+
+                if(!confirmacion) {
+                    alert("Eliminacion cancelada");
+                } else {
+                    eliminarProducto(producto.id)
+                }
+            });
         }
+
+        async function eliminarProducto(id) {
+            try {
+                const urlBase = "http://localhost:3000";
+                const response = await fetch(`${urlBase}/api/products/${id}`, {
+                    method: "DELETE"
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    console.log(result.message);
+                    alert(result.message);
+
+                    // Vaciamos la lista
+                    contenedorProductos.innerHTML = ""
+                } else {
+                    console.error("Error al eliminar un producto: ", result.message);
+
+                    alert("No se pudo eliminar el producto");
+                }
+
+
+            } catch (error) {
+                console.error("Error en la solicitud DELETE: ", error);
+                alert("Ocurrio un error al eliminar un producto");
+            }
+        }
+
+
     </script>
 </body>
 </html>
